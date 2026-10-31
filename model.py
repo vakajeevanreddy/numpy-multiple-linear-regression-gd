@@ -231,17 +231,23 @@ def root_mean_squared_error(y_true, y_pred):
     return np.sqrt(np.mean((y_true - y_pred)**2))
 
 # Step 20 - r_squared
-import numpy as np
-
 def r_squared(y_true, y_pred):
     ss_res = np.sum((y_true - y_pred) ** 2)
     ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+
     if ss_tot == 0:
         return np.nan
+
     return 1 - (ss_res / ss_tot)
 
-# Step 21 - evaluate_regression (not yet solved)
-# TODO: implement
+# Step 21 - evaluate_regression
+def evaluate_regression(y_true, y_pred):
+    # TODO: Bundle MAE, RMSE, and R^2 into one metrics dictionary for test-set reporting.
+    return {
+        'mae' : mean_absolute_error(y_true,y_pred),
+        'rmse' : root_mean_squared_error(y_true,y_pred),
+        'r2' : r_squared(y_pred,y_pred)
+    }
 
 # Step 22 - learning_curve_data (not yet solved)
 # TODO: implement
